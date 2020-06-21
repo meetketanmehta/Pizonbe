@@ -1,0 +1,102 @@
+org: pizon
+app: product-management
+service: pizonbe-product-management
+
+custom:
+  bundle:
+    linting: false
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  environment:
+    ${file(../../secrets.common.yml):environment}
+
+functions:
+  getCategories:
+    handler: functions/category-manager.getCategories
+    events:
+      - http:
+          path: categories
+          method: get
+          cors: true
+  getSubCategories:
+    handler: functions/category-manager.getSubCategories
+    events:
+      - http:
+          path: subCategories
+          method: get
+          cors: true
+
+  getBrands:
+    handler: functions/product-manager.getBrands
+    events:
+      - http:
+          path: brands
+          method: get
+          cors: true
+  addProducts:
+    handler: functions/product-manager.addProducts
+    events:
+      - http:
+          path: products
+          method: post
+          cors: true
+  approveProduct:
+    handler: functions/product-manager.approveProduct
+    events:
+      - http:
+          path: approveProduct
+          method: post
+          cors: true
+  getUnApprovedProducts:
+    handler: functions/product-manager.getUnApprovedProducts
+    events:
+      - http:
+          path: getUnApprovedProducts
+          method: get
+          cors: true
+      - http:
+          path: getUnApprovedProducts/{category}
+          method: get
+          cors: true
+      - http:
+          path: getUnApprovedProducts/{category}/{subCategory}
+          method: get
+          cors: true
+  getProducts:
+    handler: functions/product-manager.getProducts
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true
+      - http:
+          path: products/{category}
+          method: get
+          cors: true
+      - http:
+          path: products/{category}/{subCategory}
+          method: get
+          cors: true
+
+  addPrices:
+    handler: functions/price-manager.addPrices
+    events:
+      - http:
+          path: prices
+          method: post
+          cors: true
+  getPrice:
+    handler: functions/price-manager.getPrice
+    events:
+      - http:
+          path: getPrice/{proId}
+          method: get
+          cors: true
+
+plugins:
+  - serverless-mocha-plugin
+  - serverless-offline
+  - serverless-bundle

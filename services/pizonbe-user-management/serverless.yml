@@ -1,0 +1,72 @@
+org: pizon
+app: user-management
+service: pizonbe-user-management
+
+custom:
+  bundle:
+    linting: false
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  environment:
+    ${file(../../secrets.common.yml):environment}
+
+functions:
+  register:
+    handler: functions/auth-manager.register
+    events:
+      - http:
+          path: register
+          method: post
+          cors: true
+  login:
+    handler: functions/auth-manager.login
+    events:
+      - http:
+          path: login
+          method: post
+          cors: true
+  getUserId:
+    handler: functions/auth-manager.getUserId
+    events:
+      - http:
+          path: getUserId
+          method: get
+          cors: true
+
+  addAddress:
+    handler: functions/address-manager.addAddress
+    events:
+      - http:
+          path: address
+          method: post
+          cors: true
+  getAddress:
+    handler: functions/address-manager.getAddress
+    events:
+      - http:
+          path: address
+          method: get
+          cors: true
+
+  addStoreDetails:
+    handler: functions/store-manager.addStoreDetails
+    events:
+      - http:
+          path: addStoreDetails
+          method: post
+          cors: true
+  getStoreDetails:
+    handler: functions/store-manager.getStoreDetails
+    events:
+      - http:
+          path: getStoreDetails
+          method: get
+          cors: true
+
+plugins:
+  - serverless-mocha-plugin
+  - serverless-offline
+  - serverless-bundle

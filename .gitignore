@@ -1,0 +1,6 @@
+secrets.common.yml
+services/pizonbe-product-management/.serverless
+services/pizonbe-product-management/node_modules
+services/pizonbe-user-management/.serverless
+services/pizonbe-user-management/node_modules
+node_modules
