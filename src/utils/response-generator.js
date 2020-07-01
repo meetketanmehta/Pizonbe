@@ -22,7 +22,7 @@ export function getResponseWithObject(statusCode, values) {
     };
 }
 
-export function getUnauthorizedResponse() {
+export function getForbiddenResponse() {
     return {
         statusCode: 403,
         headers: {

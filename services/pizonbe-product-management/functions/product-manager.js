@@ -103,7 +103,7 @@ export async function getUnApprovedProducts(event, context) {
         const decodedUser = await jwt.verify(event.headers.authorizationToken, process.env.JWT_SECRET);
         const hasRights = Validator.checkIfIncludes(decodedUser, ['admin']);
         if(!hasRights) {
-            return ResponseGenerator.getUnauthorizedResponse();
+            return ResponseGenerator.getForbiddenResponse();
         }
         await mongoose.connect(url);
         const queryObj = {

@@ -1,0 +1,25 @@
+org: pizon
+app: order-management
+service: pizonbe-order-management
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  environment:
+    ${file(../../secrets.common.yml):environment}
+
+
+functions:
+  placeOrder:
+    handler: functions/order-manager.placeOrder
+    events:
+      - http:
+          path: orders
+          method: post
+          cors: true
+
+plugins:
+  - serverless-mocha-plugin
+  - serverless-offline
+  - serverless-bundle
