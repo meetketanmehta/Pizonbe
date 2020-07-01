@@ -2,6 +2,10 @@ org: pizon
 app: order-management
 service: pizonbe-order-management
 
+custom:
+  bundle:
+    linting: false
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -23,6 +27,13 @@ functions:
     events:
       - http:
           path: orders
+          method: get
+          cors: true
+  getOrderDetails:
+    handler: functions/order-manager.getOrderDetails
+    events:
+      - http:
+          path: orders/{orderId}
           method: get
           cors: true
 

@@ -1,5 +1,5 @@
 const ResponseGenerator = require('../../../src/utils/response-generator')
-const Product = require('../models/Product');
+const Product = require('../../../src/models/Product');
 const Category = require('../models/Category');
 
 module.exports.adminToken = function () {

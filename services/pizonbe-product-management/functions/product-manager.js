@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Promise = require('promise');
 const jwt = require('jsonwebtoken');
 import * as ResponseGenerator from '../../../src/utils/response-generator';
-import Product from "../models/Product";
+import Product from "../../../src/models/Product";
 import * as DBConnector from '../../../src/utils/db-connector';
 import Address from '../../../src/models/Address';
 import ProductPrice from "../models/ProductPrice";

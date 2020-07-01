@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const CategoryManager = require('../functions/category-manager');
+const CategoryManager = require('../../services/pizonbe-product-management/functions/category-manager');
 
 const productSchema = new mongoose.Schema({
     title: {

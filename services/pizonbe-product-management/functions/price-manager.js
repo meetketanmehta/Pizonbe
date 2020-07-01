@@ -4,7 +4,7 @@ import UserTypes from "../../../res/values/user-types";
 import StringValues from "../../../res/values/string-values";
 import * as ResponseGenerator from '../../../src/utils/response-generator';
 import * as Validator from '../../../src/utils/validator';
-import Product from "../models/Product";
+import Product from "../../../src/models/Product";
 const jwt = require('jsonwebtoken');
 
 const addPricePermission = [UserTypes.store];

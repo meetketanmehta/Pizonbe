@@ -3,7 +3,7 @@ require('dotenv').config({path: '/Users/meetmehta/Documents/serverless/product-m
 const expect = require('chai').expect;
 const sinon = require('sinon');
 const lambdaWrapper = require('serverless-mocha-plugin').lambdaWrapper;
-const Product = require('../../models/Product');
+const Product = require('../../../../src/models/Product');
 const ResponseGenerator = require('../../../../src/utils/response-generator');
 const DBConnector = require('../../../../src/utils/db-connector');
 const factory = require('../factory');

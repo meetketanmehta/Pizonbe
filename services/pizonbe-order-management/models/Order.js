@@ -67,6 +67,7 @@ const orderSchema = new mongoose.Schema({
             default: "NOT ASSIGNED"
         },
         delExecId: String,
+        delExecName: String
     },
 });
 
