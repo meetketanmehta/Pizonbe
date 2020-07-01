@@ -18,6 +18,13 @@ functions:
           path: orders
           method: post
           cors: true
+  getOrders:
+    handler: functions/order-manager.getOrders
+    events:
+      - http:
+          path: orders
+          method: get
+          cors: true
 
 plugins:
   - serverless-mocha-plugin

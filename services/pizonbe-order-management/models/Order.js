@@ -9,6 +9,10 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    storeName: {
+        type: String,
+        required: true
+    },
     deliveryAddress: {
         addId: {
             type: String,
