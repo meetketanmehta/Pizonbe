@@ -36,6 +36,7 @@ const orderSchema = new mongoose.Schema({
     products: [
         {
             proId: String,
+            title: String,
             options: String,
             price: Number,
             quantity: Number

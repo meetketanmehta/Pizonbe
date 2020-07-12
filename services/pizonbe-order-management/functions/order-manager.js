@@ -155,7 +155,6 @@ export async function getOrderDetails(event, context) {
         });
         const productsProjectionObj = {
             _id: true,
-            title: true,
             imageUri: true,
             category: true,
             subCategory: true,
