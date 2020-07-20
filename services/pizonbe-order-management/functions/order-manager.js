@@ -84,9 +84,20 @@ export async function getOrders(event, context) {
         if(decodedUser.userType === 'store') {
             queryObj.storeId = decodedUser.userId;
         }
+        if(event.queryStringParameters.ordersType === "Pending") {
+            queryObj.status = {
+                $in: [
+                    "WAITING FOR STORE CONFIRMATION",
+                    "DELIVERY EXECUTIVE ASSIGNED"
+                ]
+            };
+        }
+        if(event.queryStringParameters.ordersType === "Completed"){
+            console.log("Hey");
+            queryObj.status = "DELIVERED";
+        }
         const projectionObj = {
             deliveryExecutive: false,
-
         };
         await connect;
         const orders = await Order.find(queryObj, projectionObj).lean();
