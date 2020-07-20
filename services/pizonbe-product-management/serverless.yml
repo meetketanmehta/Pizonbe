@@ -80,6 +80,13 @@ functions:
           path: products/{category}/{subCategory}
           method: get
           cors: true
+  getOptions:
+    handler: functions/product-manager.getOptions
+    events:
+      - http:
+          path: productOptions/{proId}
+          method: get
+          cors: true
 
   addPrices:
     handler: functions/price-manager.addPrices

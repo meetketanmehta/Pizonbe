@@ -127,7 +127,7 @@ export async function getUnApprovedProducts(event, context) {
  * This function returns all the approved products. If returns all the products available in 5 kms radius if latitude and longitude is provided
  * @param event
  * @param context
- * @returns {Promise<{headers: {"Access-Control-Allow-Origin": string, "Access-Control-Allow-Credentials": boolean}, body: string, statusCode: number}|{headers: {"Access-Control-Allow-Origin": string, "Access-Control-Allow-Credentials": boolean}, body: string, statusCode: *}>}
+ * @returns {Promise<{headers: {"Access-Control-Allow-Origin": string, "Access-Control-Allow-Credentials": boolean}, body: string, statusCode: *}>}
  */
 export async function getProducts(event, context) {
     try {
@@ -209,6 +209,26 @@ export async function getProducts(event, context) {
 
         return ResponseGenerator.getResponseWithObject(200, products);
     } catch(err) {
+        console.error(err);
+        return ResponseGenerator.getInternalErrorResponse();
+    }
+}
+
+export async function getOptions(event, context) {
+    try {
+        const connect = DBConnector.connectToProDb();
+        const proId = event.pathParameters.proId;
+        await connect;
+        var pricing = await ProductPrice.find({proId: proId});
+        var options = {};
+        pricing.forEach((productPrice) => {
+            productPrice.pricing.forEach((pricing) => {
+               options[pricing.options] = true;
+            });
+        });
+        var response = Object.keys(options);
+        return ResponseGenerator.getResponseWithObject(200, response);
+    } catch (err) {
         console.error(err);
         return ResponseGenerator.getInternalErrorResponse();
     }
