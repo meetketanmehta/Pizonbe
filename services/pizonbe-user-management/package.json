@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "case-anything": "^1.1.1",
     "mongoose-unique-validator": "^2.0.3"
   },
